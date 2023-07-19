@@ -38,6 +38,9 @@ services:
   routes:
   - path: /
   envs:
+  - key: APP_APPLICATION__BASE_URL
+    scope: RUN_TIME
+    value: ${APP_URL}
   - key: APP_DATABASE__USERNAME
     scope: RUN_TIME
     value: ${newsletter.USERNAME}
@@ -62,4 +65,3 @@ databases:
     num_nodes: 1
     size: db-s-dev-database
     # Postgres version - using the latest here
-    version: "15"
