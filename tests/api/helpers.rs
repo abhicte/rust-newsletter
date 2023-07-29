@@ -166,8 +166,8 @@ impl TestApp {
             confirmation_link.set_port(Some(self.port)).unwrap();
             confirmation_link
         };
-        let html = get_link(&body["HtmlBody"].as_str().unwrap());
-        let plain_text = get_link(&body["TextBody"].as_str().unwrap());
+        let html = get_link(&body["html"].as_str().unwrap());
+        let plain_text = get_link(&body["text"].as_str().unwrap());
         ConfirmationLinks { html, plain_text }
     }
 
@@ -192,7 +192,7 @@ pub async fn spawn_app() -> TestApp {
         c.database.database_name = Uuid::new_v4().to_string();
         // Use a random OS port
         c.application.port = 0;
-        c.email_client.base_url = email_server.uri();
+        c.email_client.base_url = format!("{}/email",email_server.uri());
         c
     };
     // Create and migrate the database

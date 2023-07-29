@@ -1,7 +1,8 @@
+-- Add migration script here
 INSERT INTO users (user_id, username, password_hash)
 VALUES (
-'760f4716-0301-4518-85fa-b244438ec93e',
-'admin',
-'$argon2id$v=19$m=15000,t=2,p=1$VENj8PbDF3RhNozgOwTMyA$9l3LBBLFCRqTIecEC+KSnTzXn0WfA2B5sHUI+xVWHCg');
+'761f9b65-b290-49e0-b738-b97098ec9e73',
+'admin2',
+'$argon2id$v=19$m=15000,t=2,p=1$UWvxL0RTfg++cxKtC87Jgw$XovPANRD6/0N/kAJVMKcIaw01HShdCv8iY5Yjid7MHY');
 
 
