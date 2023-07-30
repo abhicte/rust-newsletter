@@ -31,13 +31,17 @@ impl Application {
     // `Application`.
     pub async fn build(configuration: Settings) -> Result<Self, anyhow::Error> {
         let connection_pool = get_connection_pool(&configuration.database);
+        println!("connection pool done");
         let email_client = configuration.email_client.client();
+        println!("email client done");
         let address = format!(
             "{}:{}",
             configuration.application.host, configuration.application.port
         );
+        println!("address {}",address);
         let listener = TcpListener::bind(address)?;
         let port = listener.local_addr().unwrap().port();
+        println!("port {}",port);
         let server = run(
             listener,
             connection_pool,
@@ -47,6 +51,7 @@ impl Application {
             configuration.redis_uri,
         )
         .await?;
+    println!("app ready");
         // We "save" the bound port in one of `Application`'s fields
         Ok(Self { port, server })
     }
