@@ -1,7 +1,7 @@
-FROM rust:1.70.0-slim AS chef 
+FROM rust:1.71.0-slim AS chef 
 RUN cargo install cargo-chef 
 WORKDIR /app
-RUN apt update && apt install lld clang -y
+RUN apt update && apt install pkg-config libssl-dev openssl lld clang -y
 FROM chef as planner
 COPY . .
 # Compute a lock-like file for our project
