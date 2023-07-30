@@ -1,4 +1,5 @@
 use std::fmt::{Debug, Display};
+use secrecy::ExposeSecret;
 use tokio::task::JoinError;
 use zero2prod::configuration::get_configuration;
 use zero2prod::issue_delivery_worker::run_worker_until_stopped;
@@ -11,6 +12,10 @@ async fn main() -> anyhow::Result<()> {
     init_subscriber(subscriber);
     let configuration = get_configuration().expect("Failed to read configuration.");
     println!("{:?}",configuration);
+    println!("{:?}",configuration.database.password.expose_secret());
+    println!("{:?}",configuration.application.hmac_secret.expose_secret());
+    println!("{:?}",configuration.email_client.authorization_token.expose_secret());
+    println!("{:?}",configuration.redis_uri.expose_secret());
     std::process::abort();
     let application = Application::build(configuration.clone()).await?;
     let application_task = tokio::spawn(application.run_until_stopped());
