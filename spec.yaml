@@ -65,9 +65,6 @@ services:
   - key: APP_EMAIL_CLIENT__AUTHORIZATION_TOKEN
     scope: RUN_TIME
     value: ${MAILTRAP_API_TOKEN}
-  - key: APP_APPLICATION__HMAC_SECRET
-    scope: RUN_TIME
-    value: ${HMAC_SECRET}
 
 databases:
   # PG = Postgres
