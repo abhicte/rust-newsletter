@@ -11,10 +11,6 @@ async fn main() -> anyhow::Result<()> {
     let subscriber = get_subscriber("zero2prod".into(), "info".into(), std::io::stdout);
     init_subscriber(subscriber);
     let configuration = get_configuration().expect("Failed to read configuration.");
-    println!("{:?}",configuration.database.password.expose_secret());
-    println!("{:?}",configuration.application.hmac_secret.expose_secret());
-    println!("{:?}",configuration.email_client.authorization_token.expose_secret());
-    println!("{:?}",configuration.redis_uri.expose_secret());
     let application = Application::build(configuration.clone()).await?;
     let application_task = tokio::spawn(application.run_until_stopped());
     let worker_task = tokio::spawn(run_worker_until_stopped(configuration));
