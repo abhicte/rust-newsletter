@@ -56,15 +56,6 @@ services:
   - key: APP_DATABASE__DATABASE_NAME
     scope: RUN_TIME
     value: ${newsletter.DATABASE}
-  - key: APP__REDIS_URI
-    scope: RUN_TIME
-    value: ${APP_REDIS_URI}
-  - key: APP_EMAIL_CLIENT__BASE_URL
-    scope: RUN_TIME
-    value: ${MAILTRAP_API_URL}
-  - key: APP_EMAIL_CLIENT__AUTHORIZATION_TOKEN
-    scope: RUN_TIME
-    value: ${MAILTRAP_API_TOKEN}
 
 databases:
   # PG = Postgres
